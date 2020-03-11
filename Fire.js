@@ -21,7 +21,7 @@ class Fire {
                 messagingSenderId: "603394106693",
                 appId: "1:603394106693:web:f324648009850fdbf70a2c",
                 measurementId: "G-8JDD08E6KC"
-            })
+            });
         }
     };
 
@@ -29,11 +29,9 @@ class Fire {
         firebase.auth().onAuthStateChanged(user => {
             if (!user) {
                 firebase.auth().signInAnonymously();
-
             }
-
-        })
-    }
+        });
+    };
 
     send = messages => {
         messages.forEach(item => {
@@ -50,17 +48,18 @@ class Fire {
 
 
     parse = message => {
-        const {user, text, timestamp} = message.val()
-        const {key: _id} = message
-        const createdAt = new Date(timestamp)
+        const { user, text, timestamp } = message.val();
+        const { key: _id } = message;
+        const createdAt = new Date(timestamp);
 
         return {
             _id,
             createdAt,
             text,
             user
-        }
-    }
+        };
+    };
+
 
     get = callback => {
         this.db.on('child_added', snapshot => callback(this.parse(snapshot)))
@@ -75,7 +74,7 @@ class Fire {
     }
 
     get uid() {
-        return (firebase.auth().currentUser || {}.uid)
+        return (firebase.auth().currentUser || {}).uid
     }
 }
 

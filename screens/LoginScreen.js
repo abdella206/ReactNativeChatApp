@@ -8,6 +8,8 @@ export default class LoginScreen extends Component {
         name: ''
     }
 
+    
+
     continue = () => {
         this.props.navigation.navigate("Chat", { name: this.state.name })
     };
